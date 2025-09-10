@@ -5,61 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Marea (We’ve Lost Dancing) — Fred again..</title>
   <style>
-    
-    body{
-      margin:0;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      min-height:100vh;
-      background:black;
-      color:white;
-      font-family:Arial, Helvetica, sans-serif;
-      line-height:1.7;
+    html, body { height: 100%; margin: 0; }
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #111;
+      background: #ffeb3b; /* bright yellow background */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
     }
-    main{
-      max-width:var(--maxw);
-      margin:1rem;
-      padding:2rem;
-      background:#1a1a1a;
-      border:1px solid rgba(230,57,70,.5);
-      border-radius:8px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.5);
-      text-align:left;
+    h1 {
+      margin: 0;
+      font-size: 2.6rem;
+      font-weight: bold;
+      letter-spacing: 0.05em;
     }
-    h1{
-      margin:0 0 .5rem;
-      text-align:center;
-      font-size:2rem;
-      color:var(--accent);
+    .artist {
+      margin-top: 0.5rem;
+      font-size: 1.3rem;
+      font-weight: 500;
     }
-    h2{
-      margin:0 0 2rem;
-      text-align:center;
-      font-size:1.1rem;
-      color:var(--muted);
-      letter-spacing:.06em;
+    main {
+      max-width: 720px;
+      margin-top: 2rem;
+      background: rgba(255,255,255,0.85);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.25);
     }
-    .lyric{margin:.45rem 0}
-    hr{
-      border:0;
-      height:1px;
-      background:linear-gradient(90deg,transparent,rgba(230,57,70,.35),transparent);
-      margin:1.4rem 0;
-    }
-    footer{
-      text-align:center;
-      color:var(--muted);
-      font-size:.85rem;
-      padding-top:1.5rem;
+    .lyric { margin: .45rem 0; }
+    footer {
+      margin-top: 2rem;
+      font-size: .8rem;
+      color: #333;
     }
   </style>
 </head>
 <body>
-  <main>
-    <h1>Marea (We’ve Lost Dancing)</h1>
-    <h2>Fred again..</h2>
+  <h1>Marea</h1>
+  <p class="artist">by Fred again..</p>
 
+  <main>
     <p class="lyric">We&#39;ve lost dancing (lost dancing)</p>
     <p class="lyric">This year we&#39;ve had to lose</p>
     <p class="lyric">Our space, we&#39;ve lost</p>
@@ -80,8 +69,6 @@
     <p class="lyric">Will be</p>
     <p class="lyric">Marvellous</p>
 
-    <hr />
-
     <p class="lyric">We gon&#39; make it through, through</p>
     <p class="lyric">Yeah, ooh</p>
     <p class="lyric">We&#39;ve-dancing-lost, lost-dancing</p>
@@ -101,5 +88,7 @@
     <p class="lyric">Will be</p>
     <p class="lyric">Marvellous</p>
   </main>
+
+  <footer>All text on this page was provided by the user.</footer>
 </body>
 </html>
