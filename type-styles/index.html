@@ -1,114 +1,70 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Markup For Type</title>
+  <meta charset="UTF-8">
+  <title>Merriweather Typography Demo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
   <style>
-    /* super simple, classroom-friendly styles */
-    body { font-family: Arial, Helvetica, sans-serif; line-height: 1.6; color: #222; margin: 2rem; }
-    h1 { font-size: 2.25rem; margin: 0 0 1rem; }
-    h2 { font-size: 1.35rem; margin-top: 2rem; }
-    h3 { font-size: 1.1rem; margin-top: 1.25rem; }
-    p, li { max-width: 70ch; }
-    code { background: #f2f2f2; padding: 0 4px; border-radius: 3px; }
-    pre { background: #f7f7f7; padding: 12px; overflow: auto; border-radius: 6px; }
-    ul { padding-left: 1.25rem; }
-    hr { margin: 2rem 0; }
+    body {
+      font-family: 'Merriweather', serif;
+      font-size: 17pt;
+      line-height: 1.5;
+      margin: 2rem;
+      color: #222;
+      background: #fff9d6; /* pale yellow */
+    }
+    h1, h2 {
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      text-align: center;
+    }
+    p { margin: 0.3rem 0; }
+    .light { font-weight: 300; }
+    .normal { font-weight: 400; }
+    .bold { font-weight: 700; }
+    .xbold { font-weight: 900; }
+    .italic { font-style: italic; }
+    .ls-narrow { letter-spacing: -7pt; }
+    .ls-wide { letter-spacing: 3pt; }
+    .upper { text-transform: uppercase; }
+    .lower { text-transform: lowercase; }
+    .cap { text-transform: capitalize; }
+    .u { text-decoration: underline; }
+    .lt { text-decoration: line-through; }
+    .o { text-decoration: overline; }
   </style>
 </head>
 <body>
-  <h1>Markup For Type</h1>
+  <h1>Merriweather</h1>
+  <p>Font Family: "Merriweather" | Font Size: 17pt</p>
 
-  <h2>Inline Elements And Block Elements</h2>
-  <p>In normal body copy, text typically flows from one line to the next as we reach the edge of the visible page. We add words to a line, progressing horizontally from left to right, until we reach the end of the line and drop down to continue on the next line. In HTML, this is the default behavior for text without any markup. Many HTML elements are intended to flow with text in this way without interruption. Elements that have this behavior are known as <strong>inline elements</strong>.</p>
+  <h2>Font Weight</h2>
+  <p class="normal">Normal: Sphinx of black quartz, judge my vow</p>
+  <p class="light">Light: Sphinx of black quartz, judge my vow</p>
+  <p class="bold">Bold: Sphinx of black quartz, judge my vow</p>
+  <p class="xbold">Extra Bold: Sphinx of black quartz, judge my vow</p>
 
-  <p>Common inline elements include <code>&lt;a&gt;</code>, <code>&lt;strong&gt;</code>, <code>&lt;em&gt;</code>, <code>&lt;b&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;sup&gt;</code>, <code>&lt;sub&gt;</code>, <code>&lt;button&gt;</code>, <code>&lt;code&gt;</code>, and <code>&lt;span&gt;</code>.</p>
+  <h2>Font Style</h2>
+  <p class="normal">Normal: Sphinx of black quartz, judge my vow</p>
+  <p class="italic">Italic: Sphinx of black quartz, judge my vow</p>
 
-  <p>HTML also has elements which do not follow the normal flow of text, but instead define the containers, or blocks, within which inline text flows. Most HTML documents are fairly complicated hierarchies of nested elements — blocks containing blocks, etc. Elements that create these containers are <strong>block elements</strong>.</p>
+  <h2>Letter Spacing</h2>
+  <p class="normal">Normal: Sphinx of black quartz, judge my vow</p>
+  <p class="ls-narrow">Narrow (-7pt): Sphinx of black quartz, judge my vow</p>
+  <p class="ls-wide">Wide (3pt): Sphinx of black quartz, judge my vow</p>
 
-  <p>Common block elements include:</p>
-  <ul>
-    <li><code>&lt;p&gt;</code></li>
-    <li><code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, <code>&lt;h4&gt;</code>, <code>&lt;h5&gt;</code>, <code>&lt;h6&gt;</code></li>
-    <li><code>&lt;article&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;aside&gt;</code></li>
-    <li><code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;div&gt;</code></li>
-  </ul>
+  <h2>Text Transform</h2>
+  <p class="normal">None: Sphinx of black quartz, judge my vow</p>
+  <p class="upper">Uppercase: Sphinx of black quartz, judge my vow</p>
+  <p class="lower">Lowercase: Sphinx of black quartz, judge my vow</p>
+  <p class="cap">Capitalize: Sphinx of black quartz, judge my vow</p>
 
-  <h2>Code Comments</h2>
-  <p>Sometimes, you want to put notes or comments into the code itself that are not visible to the end user. These comments can also be useful for temporarily removing code from the page without actually deleting it, because code within a comment does not get parsed by the browser.</p>
-  <pre><code>&lt;!-- This is a comment. It will not be shown on the page. --&gt;</code></pre>
-
-  <h2>Meta Charset</h2>
-  <p>There are many different technical standards for how text data can be encoded. It's a good idea to tell the browser how the text in your document is encoded so it can be interpreted correctly. <strong>UTF‑8</strong> is widely used and supports a huge array of glyphs for many languages.</p>
-  <pre><code>&lt;meta charset="UTF-8"&gt;</code></pre>
-
-  <h2>HTML Entities</h2>
-  <p>Some characters are used to create markup and must be escaped in your code with short words called <em>HTML entities</em>. These words begin with an ampersand and end with a semicolon.</p>
-  <ul>
-    <li>Less-than <code>&lt;</code> → <code>&amp;lt;</code></li>
-    <li>Greater-than <code>&gt;</code> → <code>&amp;gt;</code></li>
-    <li>Ampersand <code>&amp;</code> → <code>&amp;amp;</code></li>
-  </ul>
-  <p>There are entities for many glyphs, but if you use UTF‑8 you rarely need most of them.</p>
-
-  <hr>
-
-  <h2>Styles For Type (CSS)</h2>
-
-  <h3>Format of a CSS Ruleset</h3>
-  <pre><code>selector {
-  property-name: value;
-  another-property-name: value;
-}</code></pre>
-
-  <h3>Inheritance</h3>
-  <p>Most CSS properties set on a container are inherited by its descendants. An element accumulates inherited rules from its ancestors. A rule on the element itself takes precedence over a rule inherited from a parent, which takes precedence over a rule from a grandparent, and so on. Use the browser's element inspector to view the full stack of inherited rules.</p>
-
-  <h3>CSS Properties for Styling Type</h3>
-  <ul>
-    <li><strong>font-family</strong> — a prioritized list of font faces; the browser uses the first available.</li>
-    <li><strong>font-size</strong> — size of type.
-      <ul>
-        <li>Absolute units: <code>pt</code>, <code>px</code>.</li>
-        <li>Relative units: <code>rem</code>, <code>em</code>, <code>%</code>.</li>
-        <li><code>1rem</code> equals the document's base size (set on <code>html</code>).</li>
-        <li><code>1em</code> equals the parent element's font size.</li>
-        <li><code>%</code> is relative to the parent (e.g., <code>100%</code> ≈ <code>1em</code>).</li>
-      </ul>
-    </li>
-    <li><strong>font-weight</strong> — boldness of the typeface. Values: <code>normal</code>, <code>bold</code>, or numeric <code>100</code>–<code>900</code> (<code>400</code> = normal).</li>
-    <li><strong>font-style</strong> — <code>italic</code> or <code>normal</code> (note: some elements are italic by default).</li>
-    <li><strong>line-height</strong> — space between lines (leading). Can be unitless; <code>1</code> equals the font size. Typical paragraph values: around <code>1.2</code>–<code>1.6</code>.</li>
-    <li><strong>letter-spacing</strong> — tracking; spacing between characters. Often use <code>em</code> units. Negative values are allowed.</li>
-    <li><strong>text-align</strong> — inline content alignment within a block container (e.g., <code>left</code>, <code>center</code>).</li>
-    <li><strong>margin</strong> — controls white space around blocks; also useful for page edge spacing and gaps between sections.</li>
-    <li><strong>text-decoration</strong> — <code>underline</code>, <code>overline</code>, <code>line-through</code>, <code>none</code>; with <code>text-decoration-style</code> for <code>solid</code>, <code>wavy</code>, or <code>dashed</code>.</li>
-    <li><strong>text-transform</strong> — <code>uppercase</code>, <code>lowercase</code>, <code>capitalize</code>.</li>
-    <li><strong>text-indent</strong> — indent first line; can outdent with negative values.</li>
-    <li><strong>color</strong> — text color.
-      <ul>
-        <li>Named: <code>gray</code></li>
-        <li>Hex: <code>#cc0000</code></li>
-        <li>RGB: <code>rgb(200, 0, 0)</code></li>
-        <li>RGBA: <code>rgba(200, 0, 0, 0.5)</code> (with alpha for transparency)</li>
-      </ul>
-    </li>
-  </ul>
-
-  <blockquote>
-    Human sacrifice, dogs and cats living together... mass hysteria! — <em>Ghostbusters</em>, 1984
-  </blockquote>
-
-  <h2>Using Web Fonts</h2>
-  <h3>Google Fonts</h3>
-  <p><code>fonts.google.com</code> provides a free collection of web fonts. Quality varies, but they're free, plentiful, and easy to use.</p>
-
-  <h3>Typekit Fonts (Adobe)</h3>
-  <p>Available to Creative Cloud subscribers. Not free and a bit more involved to use, but generally higher-quality typefaces. Educational subscriptions may have limited access.</p>
-
-  <h3>Font Awesome (Icon Font)</h3>
-  <p>Icon fonts are typefaces where glyphs are vector icons instead of letters. Very handy for UI controls.</p>
-
+  <h2>Text Decoration</h2>
+  <p class="normal">Normal: Sphinx of black quartz, judge my vow</p>
+  <p class="u">Underline: Sphinx of black quartz, judge my vow</p>
+  <p class="lt">Line-through: Sphinx of black quartz, judge my vow</p>
+  <p class="o">Overline: Sphinx of black quartz, judge my vow</p>
 </body>
 </html>
