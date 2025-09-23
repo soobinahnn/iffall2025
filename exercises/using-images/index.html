@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Using Images</title>
+  <style>
+    :root { --ink:#111; --muted:#f4f4f4; --card:#555; }
+    html,body{margin:0;padding:0}
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 32px 16px 64px;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+    h1{font-size:2.2rem;margin:0 0 1rem}
+    h2{font-size:1.5rem;margin:2rem 0 0.5rem}
+    h3{
+      margin:1.5rem 0 0.5rem;
+      font-style: italic;
+      text-align:center;
+    }
+    code {
+      background: var(--muted);
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
+    pre {
+      background: var(--muted);
+      padding: 10px;
+      border-radius: 6px;
+      overflow-x: auto;
+    }
+    img.full-screen { width: 100%; height: auto; display:block; }
+    img.square {
+      width: 280px;
+      height: 280px;
+      object-fit: cover;
+      object-position: left center;
+      display:block;
+    }
+    .background-image-example {
+      background-image: url(https://wudesign.me/resources/using-images/images/shelf-cloud-vertical.jpg);
+      background-size: cover;
+      background-position: center 20%;
+      padding: 10% 5% 45% 40%;
+      color: white;
+      font-weight: 600;
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+    /* Comparison table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      text-align: center;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px 8px;
+      vertical-align: top;
+    }
+    th { font-size:1.2rem }
+    .img-with-label{
+      position:relative;
+      display:inline-block;
+    }
+    .img-with-label span{
+      position:absolute;
+      top:8px; right:8px;
+      font-size:0.9rem;
+      color:#fff;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+    }
+    /* Figure box with border like screenshot */
+    .figure-box{
+      border:1px solid #bdbdbd;
+      padding:12px;
+      border-radius:2px;
+      background:#fff;
+    }
+    figure { margin: 1rem 0; text-align: center; }
+    figcaption { font-style: italic; margin-top: 0.5rem; }
+    .gray-box {
+      background: var(--card);
+      color: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+    }
+    .lead { color:#555; margin-top:0 }
+    ul{ text-align:left; margin:0.5rem 0 0 1.25rem }
+    ul li{ margin:0.25rem 0 }
+  </style>
+</head>
+<body>
+
+  <h1>Using Images</h1>
+
+  <h2>The <code>&lt;img&gt;</code> tag</h2>
+  <p class="lead">
+    The <code>&lt;img&gt;</code> tag is the simplest and most common way to display an image in an html page. 😊
+    It requires a <code>src</code> attribute, which indicates where the browser will find the image, and an
+    <code>alt</code> attribute, which provides a textual version of the image for screen-readers.
+  </p>
+  <p>
+    Example:
+    <img src="https://wudesign.me/resources/using-images/images/smiley.jpg" alt="Smiley face icon" width="28" height="28">
+  </p>
+  <pre>&lt;img src="path/to/image.jpg" alt="My image"&gt;</pre>
+
+  <h2>Sizing an <code>&lt;img&gt;</code></h2>
+  <p>
+    <code>&lt;img&gt;</code> tags can be sized with CSS. Generally, it is best to set only width or height, not both.
+  </p>
+  <img src="https://wudesign.me/resources/using-images/images/shelf-cloud-wide.jpg"
+       alt="Cloudy day" class="full-screen">
+
+  <h2>Cropping an <code>&lt;img&gt;</code></h2>
+  <p>We can crop by forcing width/height and using <code>object-fit: cover;</code></p>
+  <img src="https://wudesign.me/resources/using-images/images/shelf-cloud-wide.jpg"
+       alt="Cloudy day cropped" class="square">
+
+  <h2>Background images</h2>
+  <div class="background-image-example">
+    <p><strong>Shelf Cloud:</strong> A low-hanging, well-defined, wedge-shaped formation that occurs along the
+    leading edge of a gust front in a thunderstorm. Shelf clouds most often form just ahead of intense lines
+    of thunderstorms.</p>
+  </div>
+
+  <h2>Preparing images for the web</h2>
+  <h3>A comparison of image file types</h3>
+<table>
+  <tr>
+    <th>jpg</th>
+    <th>gif</th>
+    <th>png</th>
+    <th>svg</th>
+  </tr>
+  <tr>
+    <td><img src="https://wudesign.me/resources/using-images/images/smiley.jpg" width="80" alt="jpg smiley"></td>
+    <td><img src="https://wudesign.me/resources/using-images/images/smiley.jpg" width="80" alt="gif smiley"></td>
+    <td><img src="https://wudesign.me/resources/using-images/images/smiley.jpg" width="80" alt="png smiley"></td>
+    <td><img src="https://wudesign.me/resources/using-images/images/smiley.svg" width="80" alt="svg smiley"></td>
+  </tr>
+  <tr>
+    <td>
+      <div class="img-with-label">
+        <img src="https://wudesign.me/resources/using-images/images/shelf-cloud-wide.jpg" width="240" alt="jpg shelf cloud">
+        <span>36KB</span>
+      </div>
+    </td>
+    <td>
+      <div class="img-with-label">
+        <img src="https://wudesign.me/resources/using-images/images/shelf-cloud-wide.jpg" width="240" alt="gif shelf cloud">
+        <span>138KB</span>
+      </div>
+    </td>
+    <td>
+      <div class="img-with-label">
+        <img src="https://wudesign.me/resources/using-images/images/shelf-cloud-wide.jpg" width="240" alt="png shelf cloud">
+        <span>422KB</span>
+      </div>
+    </td>
+    <td style="vertical-align:middle">Not applicable, SVG is vector only!</td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Pros:</strong>
+      <ul>
+        <li>Very small file size for photos</li>
+      </ul>
+    </td>
+    <td>
+      <strong>Pros:</strong>
+      <ul>
+        <li>Can be animated</li>
+        <li>Small file size for solid colors</li>
+      </ul>
+    </td>
+    <td>
+      <strong>Pros:</strong>
+      <ul>
+        <li>Lossless compression</li>
+        <li>Full transparency</li>
+        <li>Works for photos and graphics</li>
+      </ul>
+    </td>
+    <td>
+      <strong>Pros:</strong>
+      <ul>
+        <li>Lossless compression</li>
+        <li>Full transparency</li>
+        <li>Infinite scaling</li>
+        <li>Usually small file size</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Cons:</strong>
+      <ul>
+        <li>Lossy compression</li>
+        <li>Adds artifacts in areas of high contrast</li>
+        <li>No transparency</li>
+      </ul>
+    </td>
+    <td>
+      <strong>Cons:</strong>
+      <ul>
+        <li>Limited color palette</li>
+        <li>High noise/banding</li>
+        <li>Larger file size</li>
+        <li>1-bit transparency (rough edges)</li>
+      </ul>
+    </td>
+    <td>
+      <strong>Cons:</strong>
+      <ul>
+        <li>Very large file size</li>
+      </ul>
+    </td>
+    <td>
+      <strong>Cons:</strong>
+      <ul>
+        <li>No support for raster images</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+
+  <h2>Managing file size</h2>
+  <div class="figure-box">
+    <figure>
+      <img src="https://wudesign.me/resources/using-images/images/shelf-cloud-wide.jpg"
+           alt="Compressed cloud picture" width="100%">
+      <figcaption>1680px wide, 50% compression, 143 KB</figcaption>
+    </figure>
+  </div>
+
+  <div class="gray-box">
+    <p><strong>"Resolution" is just ratio.</strong></p>
+    <p>
+      Raster images are pixels, but a pixel has no fixed physical size. 300 pixels may occupy one inch in print,
+      while a billboard pixel could be larger than an inch. When we care about data in an image, we ask for
+      its <em>pixel dimensions</em> (width × height), not “72dpi.”
+    </p>
+  </div>
+
+</body>
+</html>
