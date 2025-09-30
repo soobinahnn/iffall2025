@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Building Grids — Full</title>
+<style>
+  :root{
+    --blue:#3b82f6;
+    --muted:#f2f2f2;
+    --text:#111;
+    --maxw:1060px;
+  }
+  *{box-sizing:border-box}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+    color:var(--text);
+    line-height:1.65;
+    margin:0;
+    background:#fff;
+  }
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding:56px 24px 80px; }
+  h1{font-size:56px; line-height:1.1; margin:0 0 24px; font-weight:800;}
+  h2{font-size:44px; line-height:1.15; margin:48px 0 12px; font-weight:750;}
+  p{margin:0 0 14px;}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;}
+  a{color:var(--blue); text-decoration:underline;}
+  .callout{
+    background:var(--muted);
+    padding:14px 18px;
+    border-radius:8px;
+    margin:18px 0;
+    font-style:italic;
+  }
+  /* Shared grid styles */
+  .grid{ list-style:none; margin:18px 0; padding:0; }
+  .grid li{ text-align:center; margin-bottom:16px; font-size:.95rem; }
+  .grid img{
+    width:90%;
+    max-width:150px;
+    display:block;
+    margin:0 auto 8px;
+    border-radius:6px;
+    background:#ddd;
+  }
+  /* 1) inline-block grid */
+  .using-inline-block li{ display:inline-block; width:25%; vertical-align:top; }
+  .using-inline-block{ font-size:0; }   /* remove whitespace gaps */
+  .using-inline-block li{ font-size:.95rem; }
+  /* 2) flex grid */
+  .using-flex{ display:flex; flex-wrap:wrap; }
+  .using-flex li{ width:25%; }
+  /* 3) CSS grid */
+  .using-grid{ display:grid; grid-template-columns:repeat(4,1fr); }
+  .using-grid li{ width:100%; }
+  /* Responsive steps */
+  @media (max-width:900px){
+    .using-inline-block li, .using-flex li{ width:33.333%; }
+    .using-grid{ grid-template-columns:repeat(3,1fr); }
+  }
+  @media (max-width:680px){
+    .using-inline-block li, .using-flex li{ width:50%; }
+    .using-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width:420px){
+    .using-inline-block li, .using-flex li{ width:100%; }
+    .using-grid{ grid-template-columns:1fr; }
+  }
+  .blue{ color:var(--blue); font-weight:700; }
+</style>
+</head>
+<body>
+  <main class="wrap">
+    <h1>Building Grids</h1>
+
+    <p>There are a number of ways to build grids with HTML and css. Let's look at a few of the most common.</p>
+
+    <p>We're going to build three grids, each very visually similar, but using different techniques. However, many of the styles will be <em>shared across all three grids</em>, and therefore each grid will have <strong>two</strong> classes: one that they all share (<code>grid</code>) and one that is specific to the technique (<code>using-inline-block</code>, <code>using-flex</code>, or <code>using-grid</code>). Pay attention to the instructions, because some rules will be applied using the shared class, and some with the specific class!</p>
+
+    <h2>Grids using the <span class="blue">&lt;table&gt;</span> element</h2>
+    <p>Do not use tables to create layout grids. While the <code>&lt;table&gt;</code> element does indeed produce a grid of cells, its semantic purpose is actually to present data that is tabular, like a spreadsheet of numbers. It is <strong>not</strong> intended to be used as a layout tool for page content. It also handles responsiveness (the ability of the page to adjust to the width of the window on any device) poorly.</p>
+
+    <h2>Grids using <em>float</em></h2>
+    <p>It is possible to use the <em>float</em> property to create grids, and you may see some suggestions online for doing so. <strong>Don't.</strong> As a general rule, you should only use <span class="blue">float</span> when you actually need to wrap text or other inline elements around another element.</p>
+
+    <h2>Grids using <em>inline-block</em></h2>
+    <p>We've discussed how some elements are inline elements and some are block elements.You may have figured out by now that we can control this behavior with the <code>display</code> css property. Even though a <code>&lt;code&gt;</code> element (for instance) is normally inline, we can force it to be a block element with css like this: <code>code { display: block; }</code>.</p>
+
+    <p>There exists a 'hybrid' of these two behaviors: <code>display: inline-block;</code>. Elements with this rule applied will be styleable like blocks (all of the padding, margin, etc), but will not expand automatically to fill the width of their parent. Instead, they will only be wide enough to hold their content, and more importantly, they will align themselves horizontally like words, fitting themselves left-to-right until wrapping to a new line. We can use this behavior to make a grid!</p>
+
+    <p>Note that in this example and with others following, we'll use a <code>&lt;ul&gt;</code> element to represent the grid, and <code>&lt;li&gt;</code> elements for each cell in the grid. This is because in most cases, a grid is conceptually a list that we're just 'presenting' in rows/columns because it's an effective way to communicate small multiples of a thing — like portraits in a yearbook. Semantically, those portraits are just an alphabetical list.</p>
+
+    <p>I've started a list below, with a single item. Let's begin by populating the HTML of our list. Don't be alarmed: The pictures are going to be huge. We'll take care of that in a minute when we add css.</p>
+
+    <div class="callout">
+      <ol>
+        <li>Replicate the <code>&lt;li&gt;</code> element below to make a new <code>&lt;li&gt;</code> for eight people. You should end up with a single <code>&lt;ul&gt;</code> containing eight list items, each item with a photo and name.</li>
+      </ol>
+    </div>
+
+    <!-- INLINE-BLOCK GRID -->
+    <ul class="grid using-inline-block">
+      <li><img alt="portrait"><div>Soobin Ahn</div></li>
+      <li><img alt="portrait"><div>Violet Holah</div></li>
+      <li><img alt="portrait"><div>Monica Somosi</div></li>
+      <li><img alt="portrait"><div>Kendall Krauss</div></li>
+      <li><img alt="portrait"><div>Jane Spiro</div></li>
+      <li><img alt="portrait"><div>Mya Pierrot</div></li>
+      <li><img alt="portrait"><div>Lily Brant</div></li>
+      <li><img alt="portrait"><div>Ella Frey</div></li>
+    </ul>
+
+    <p>Okay, let's get these images under control so we can see what we're doing.</p>
+
+    <div class="callout">
+      <ol>
+        <li>Create a stylesheet for this exercise, and link it in the document head.</li>
+        <li>Add a css ruleset that selects <code>img</code> elements inside <code>.grid</code>. This is the shared class, so this rule will apply to all of the grids we build.</li>
+        <li>In the selector, add this rule: <code>width: 150px;</code></li>
+      </ol>
+    </div>
+
+    <p>The images are now small, but the list-items are still displaying as a bulleted list. Let's override the default list styles.</p>
+
+    <div class="callout">
+      <ol>
+        <li>Create a ruleset for the <code>.grid</code> class, and add the rule <code>padding: 0;</code>. This should remove default padding on the <code>&lt;ul&gt;</code> that wraps our grid.</li>
+        <li>Create a new ruleset to select the <code>&lt;li&gt;</code> elements within <code>.grid</code>. Add the rule <code>display: block;</code>.</li>
+        <li>Add a new selector for this specific grid's <code>li</code>. Use <code>.using-inline-block li</code>.</li>
+      </ol>
+    </div>
+
+    <div class="callout">
+      <ol>
+        <li>For this grid's <code>li</code> elements, set <code>display: inline-block;</code>. Be sure you aren't styling using the shared <code>.grid li</code> selector!</li>
+      </ol>
+    </div>
+
+    <p>At this point, our grid starts to look like it makes sense. But lets take a few more steps to tidy things up. We'll apply these rules using the shared <code>grid</code> class, so we don't have to do them again for the next grid.</p>
+
+    <div class="callout">
+      <ol>
+        <li>You should have already created a selector for <code>.grid li</code>, now add the following rules:</li>
+        <li><code>width: 25%;</code> Should ensures our grid is "4-up" (25% * 4 = 100% of the available width).</li>
+        <li><code>text-align: center;</code> Centers the image and name within each box.</li>
+        <li><code>font-size: 0.8rem;</code> Makes the text a bit smaller.</li>
+        <li><code>margin-bottom: 1rem;</code> Adds some space below each item.</li>
+        <li>Finally, in your selector for the <code>img</code>, change the width to <code>width: 90%;</code>. This means "be 90% the width of your parent." The parent <code>li</code> is 25% of the total page width. This ensures the image has a bit of space on either side within its parent item, even on small devices.</li>
+      </ol>
+    </div>
+
+    <p>This grid is shaping up fairly quickly, but there's one quirk. Our shared styles say the <code>li</code> elements should be <code>width: 25%;</code>... so why aren't they 4-up? The answer lies with a rendering detail of inline-block elements. Because inline-block elements wrap like words, it turns out the browser pays attention to the space character between these elements in the HTML code — just like it pays attention to a space between words. What's happening is this: we have 25% + 25% + 25% + 25% for our list items + 3 spaces, which adds up to more than 100%. The last item must therefore fall to the next line.</p>
+
+    <p>The solution is some creative css!</p>
+
+    <div class="callout">
+      <ol>
+        <li>Create a selector for <code>.using-inline-block</code>, and set <code>font-size: 0;</code>.</li>
+      </ol>
+    </div>
+
+    <p>We've shrunk the space between the <code>&lt;li&gt;</code> elements to nothing, so we're back to a perfect 25% × 4. However: if we hadn't explicitly set a font-size for the <code>&lt;li&gt;</code> elements earlier (remember <code>font-size: 0.8rem;</code>?), our names would have disappeared too, because they'd have inherited <code>font-size: 0;</code> from the surrounding <code>&lt;ul&gt;</code>. Try using the inspector to 'un-check' the <code>font-size</code> style rule for <code>.grid li</code> and see for yourself.</p>
+
+    <h2>Grids using <a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="noopener">flex</a></h2>
+    <p>Flex Layout, or flexbox, is a very powerful collection of layout tools in css.This lesson will not even attempt to get into all the intricacies of flex layout, but we can at least scratch the surface by seeing how it can be used for simple grids like ours. If you want to dig deeper, the Complete Guide to Flexbox is a fantastic resource.</p>
+
+    <p>To demonstrate, let's copy our grid <code>ul</code> once again.</p>
+
+    <div class="callout">
+      <ol>
+        <li>Copy the entire <code>&lt;ul&gt;</code> grid from the previous section, and paste it here, then change its class list to be <code>class="grid using-flex"</code>.</li>
+      </ol>
+    </div>
+
+    <!-- FLEX GRID -->
+    <ul class="grid using-flex">
+      <li><img alt="portrait"><div>Soobin Ahn</div></li>
+      <li><img alt="portrait"><div>Violet Holah</div></li>
+      <li><img alt="portrait"><div>Monica Somosi</div></li>
+      <li><img alt="portrait"><div>Kendall Krauss</div></li>
+      <li><img alt="portrait"><div>Jane Spiro</div></li>
+      <li><img alt="portrait"><div>Mya Pierrot</div></li>
+      <li><img alt="portrait"><div>Lily Brant</div></li>
+      <li><img alt="portrait"><div>Ella Frey</div></li>
+    </ul>
+
+    <p>Look, we picked up a bunch of existing styles from the shared grid class, so our images are already sized, the text is centered, etc. Hurray for shared classes to avoid repetition!</p>
+
+    <div class="callout">
+      <ol>
+        <li>Create a selector for this grid's specific class. Add the following rules:</li>
+        <li><code>display: flex;</code></li>
+        <li><code>flex-wrap: wrap;</code></li>
+      </ol>
+    </div>
+
+    <p>A nice tidy grid once again! In previous methods, the critical rules for making the grid were appled to the child elements, the <code>lis</code>. This time, we're applying a rule to the parent element, the <code>ul</code>. Flex layout can feel a little strange at first because we control children indirectly through rules applied to the parent container, but when you're used to it, it's a very convenient and, uh, flexible (sorry) system. (It's also the approach I normally use for grids myself.)</p>
+
+    <h2>Grids using <a href="https://css-tricks.com/snippets/css/complete-guide-grid/" target="_blank" rel="noopener">grid</a></h2>
+    <p>As with Flex layout, Grid layout is a very involved suite of tools, and we'll just use the most basic example here. For a complete reference, use the Complete Guide to Grid.</p>
+
+    <p>Let's copy our grid <code>ul</code> a final time.</p>
+
+    <div class="callout">
+      <ol>
+        <li>Copy the entire <code>&lt;ul&gt;</code> grid from the previous section, and paste it here, then change its class list to be <code>class="grid using-grid"</code>.</li>
+      </ol>
+    </div>
+
+    <!-- CSS GRID -->
+    <ul class="grid using-grid">
+      <li><img alt="portrait"><div>Soobin Ahn</div></li>
+      <li><img alt="portrait"><div>Violet Holah</div></li>
+      <li><img alt="portrait"><div>Monica Somosi</div></li>
+      <li><img alt="portrait"><div>Kendall Krauss</div></li>
+      <li><img alt="portrait"><div>Jane Spiro</div></li>
+      <li><img alt="portrait"><div>Mya Pierrot</div></li>
+      <li><img alt="portrait"><div>Lily Brant</div></li>
+      <li><img alt="portrait"><div>Ella Frey</div></li>
+    </ul>
+
+    <div class="callout">
+      <ol>
+        <li>Create a selector for this grid's <code>ul</code> using it's specific class, and add the following rules:</li>
+        <li><code>display: grid;</code></li>
+        <li><code>grid-template-columns: 1fr 1fr 1fr 1fr;</code></li>
+      </ol>
+    </div>
+
+    <p>The <code>fr</code> unit stands for fraction, so the above rule is instructing our grid to have four columns, each with an equal fraction of the available space.</p>
+
+    <p>You'll see that our images got tiny. Oops! In this case, our shared rule setting the <code>li</code> elements to be <code>width: 25%;</code> is working against us. Since the grid column rule defines a conceptual parent 'column' in which each <code>li</code> resides, we can tell each <code>li</code> to be <code>100%</code> of it's parent. We only want to do this for this grid, so we will not modify the shared rule. Instead, we will override it.</p>
+
+    <div class="callout">
+      <ol>
+        <li>Create a selector for <code>.using-grid li</code>, and set <code>width: 100%;</code>.</li>
+      </ol>
+    </div>
+
+    <p>We are now back to having the images fill their column correctly, and our grid is complete!</p>
+
+    <p>That's the end of our grid examples (finally!), but it's worth noting that an extremely important part of this whole lesson has been the application of a shared class, in the <code>grid</code> class. Doing so helped avoid repititious work, it also helped avoid repetitous stylesheet code. If you find yourself copying entire blocks of css code then only changing the selector and one tiny detail in the ruleset, you're doing it wrong. This is a prime use-case for a shared class!</p>
+  </main>
+
+  <!-- Tiny script: set the same embedded avatar src on all images (always offline-safe) -->
+  <script>
+    const avatar = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23e5e7eb'/><stop offset='1' stop-color='%23cfd4db'/></linearGradient></defs><rect width='100' height='100' rx='8' ry='8' fill='url(%23g)'/><circle cx='50' cy='42' r='18' fill='%23b7bcc4'/><path d='M20 90a30 22 0 1 1 60 0z' fill='%23c7ccd3'/></svg>";
+    document.querySelectorAll('img[alt=\"portrait\"]').forEach(img => img.src = avatar);
+  </script>
+</body>
+</html>
