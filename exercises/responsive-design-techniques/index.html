@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Responsive Design Techniques</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    /* Base typography */
+    html { font-size: 16px; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color: #1e5ea8; /* medium blue like screenshot */
+      line-height: 1.55;
+      margin-left: auto;
+      margin-right: auto;
+      width: 90%;
+      max-width: 800px; /* ...and 90% of viewport, whichever smaller */
+      padding: 1.25rem 0 3rem;
+      background: #f7fbff; /* subtle tint for small screens */
+    }
+    /* background-color becomes #eaf6ff at >= 640px */
+    @media (min-width: 640px) {
+      body { background: #eaf6ff; }
+    }
+
+    h1 {
+      color: #2c80d3;
+      font-weight: 800;
+      font-size: 2.2rem;
+      line-height: 1.2;
+      margin: 2rem 0 1.25rem;
+      letter-spacing: .2px;
+    }
+    /* h1 sizes per assignment */
+    @media (max-width: 500px) {
+      h1 { font-size: 1.5rem; }
+    }
+    @media (min-width: 640px) {
+      h1 { font-size: 2.5rem; }
+    }
+
+    p { margin: 0 0 1rem; }
+
+    em, code, a { color: #2c80d3; font-style: normal; }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      background: transparent;
+    }
+
+    /* Dotted rule lines between sections */
+    .rule {
+      border-top: 2px dotted #7fb4e6;
+      margin: 1.25rem 0;
+      height: 0;
+    }
+
+    /* SECTION A — fixed-size card grid (asides 170px, 10px margin, 0.8rem text) */
+    .boxes-a {
+      list-style: none;
+      padding-left: 0;
+      margin: 1rem -10px; /* remove default left padding + give the requested margin */
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .boxes-a aside {
+      width: 170px;
+      margin: 10px;
+      background: #e1f0ff;
+      color: #1e5ea8;
+      border-radius: 4px;
+      padding: .75rem;
+      font-size: 0.8rem;
+      box-sizing: border-box;
+    }
+
+    /* SECTION B — responsive width per LI: 100% / 50% @480px / 25% @640px */
+    .boxes-b {
+      list-style: none;
+      padding-left: 0;
+      margin: 1rem -10px; /* 1rem top/bottom, -10px left/right per instructions */
+      display: flex;
+      flex-wrap: wrap;
+    }
+    .boxes-b li {
+      width: 100%;
+      margin: 10px;
+      box-sizing: border-box;
+    }
+    .boxes-b aside {
+      background: #e1f0ff;
+      color: #1e5ea8;
+      border-radius: 4px;
+      padding: .9rem;
+      font-size: 0.95rem;
+    }
+    @media (min-width: 480px) {
+      .boxes-b li { width: calc(50% - 20px); } /* account for 10px margins */
+    }
+    @media (min-width: 640px) {
+      .boxes-b li { width: calc(25% - 20px); }
+    }
+
+    /* Helper spacing for headings between grids */
+    .section { margin-top: 1.25rem; }
+  </style>
+</head>
+<body>
+  <h1>Responsive Design Techniques</h1>
+
+  <p>For each section in this document, complete the challenge as described.</p>
+
+  <div class="rule"></div>
+
+  <p>Make the <code>&lt;body&gt;</code> of this document be <strong>800px</strong> wide and <strong>90%</strong> the width of the viewport, whichever is smaller. Center the body on the page no matter how wide the viewport is.</p>
+
+  <div class="rule"></div>
+
+  <p>Make the <code>background-color</code> of this document be <strong>#eaf6ff</strong> when the viewport width is <strong>640px</strong> or more.</p>
+
+  <div class="rule"></div>
+
+  <p>Make the <code>&lt;h1&gt;</code> on this page have a <code>font-size</code> of <strong>1.5rem</strong> when the viewport width is below <strong>500px</strong>, and <strong>2.5rem</strong> when the viewport width is above <strong>640px</strong>.</p>
+
+  <div class="rule"></div>
+
+  <p>Turn the following list into a grid of boxes that wrap horizontally (side-by-side until they run out of room and wrap to the next line). Make each <code>&lt;aside&gt;</code> <strong>170px</strong> wide, with a <strong>10px</strong> margin. Set the <code>font-size</code> for the boxes to be <strong>0.8rem</strong>. Be sure to remove the bullets associated with the <code>&lt;li&gt;</code> tags, and remove the default <code>padding-left</code> on the <code>&lt;ul&gt;</code>.</p>
+
+  <ul class="boxes-a section">
+    <li><aside>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</aside></li>
+    <li><aside>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</aside></li>
+    <li><aside>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</aside></li>
+    <li><aside>Sunt in culpa qui officia deserunt mollit anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur consectetur adipisicing elit sint occaecat cupidatat non proident.</aside></li>
+  </ul>
+
+  <div class="rule"></div>
+
+  <p>As above, make a grid of boxes that wrap horizontally. This time, give each <code>&lt;li&gt;</code> a width of <strong>100%</strong>. When the viewport width is greater than <strong>480px</strong>, make each <code>&lt;li&gt;</code> be <strong>50%</strong> wide. If the viewport is greater than <strong>640px</strong>, make each <code>&lt;li&gt;</code> be <strong>25%</strong> wide. The grid should be 1‑across at small widths, 2‑across at medium widths, and 4‑across at large widths. Don't set a width on the <code>&lt;aside&gt;</code> elements, but be sure they have a <strong>10px</strong> margin.</p>
+
+  <p>Now, set the <code>&lt;ul&gt;</code> to have a <code>margin</code> of <strong>−10px</strong> left and right, <strong>1rem</strong> top and bottom. What happens?</p>
+
+  <ul class="boxes-b section">
+    <li><aside>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</aside></li>
+    <li><aside>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</aside></li>
+    <li><aside>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</aside></li>
+    <li><aside>Sunt in culpa qui officia deserunt mollit anim id est laborum. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur consectetur adipisicing elit sint occaecat cupidatat non proident.</aside></li>
+  </ul>
+
+</body>
+</html>
